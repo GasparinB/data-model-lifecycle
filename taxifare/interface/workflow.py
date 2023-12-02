@@ -62,9 +62,8 @@ def train_flow():
     old_mae = evaluate_production_model.submit(min_date=min_date,max_date=max_date,wait_for=[preprocessed])
     new_mae = re_train.submit(min_date=min_date,max_date=max_date,split_ratio=0.2,wait_for=[preprocessed])
     notify.submit(old_mae=old_mae.result(),new_mae=new_mae.result(),wait_for=[old_mae,new_mae])
-    print(f"old_mae: {old_mae} -- new_mae: {new_mae}")
     if 2.5 > new_mae.result() > old_mae.result():
-      transition_model.submit(current_stage='Staging',new_stage='Production',wait_for=[old_mae,new_mae])
+        transition_model.submit(current_stage='Staging',new_stage='Production',wait_for=[old_mae,new_mae])
 
 
 if __name__ == "__main__":
