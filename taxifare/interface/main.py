@@ -247,7 +247,7 @@ def pred(X_pred: pd.DataFrame = None) -> np.ndarray:
 
     print("\n✅ prediction done: ", y_pred, y_pred.shape, "\n")
     return y_pred
-
+#hi
 
 if __name__ == '__main__':
     preprocess(min_date='2009-01-01', max_date='2015-01-01')
